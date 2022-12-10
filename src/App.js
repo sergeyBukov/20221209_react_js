@@ -9,15 +9,20 @@ export function App() {
 
     return (
         <>
-            <Form />
+            <button onClick={() => setToggle(!toggle)}>Toggle</button>
             <hr />
-            <button onClick={() => setToggle(!toggle)}>{toggle ? 'hide' : 'show'}</button>
+            <h2>{toggle ? 'Function Component' : 'Classes Component'}</h2>
+            {!toggle && <Form />}
+            {toggle && <FormFunc title='Function Component!!!!!!' />}
+
+
+            {/* <button onClick={() => setToggle(!toggle)}>{toggle ? 'hide' : 'show'}</button>
             {toggle && <FormFunc title='Function Component' />}
             <ul>
                 {arr.map((item) => (
                     <li>{item.name}</li>
                 ))}
-            </ul>
+            </ul> */}
             <hr />
             {toggle && <FormMessage title='Message Component' />}
 

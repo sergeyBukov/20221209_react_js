@@ -1,28 +1,41 @@
-import { useState } from 'react'
-import styles from './Form.module.css'
+import { useState, useEffect, useCallback, useRef } from 'react'
+/* import styles from './Form.module.css' */
+import { Child } from './components/Child'
+import { Button } from './ui/Button'
+
 
 export function Form(props) {
     const [count, setCount] = useState(0)
-    const [name, setName] = useState('Имя')
+    const [show, setShow] = useState(true)
 
-    const handleClick = () => {
-        setCount(count + 1)
+    const myRef = useRef()
+
+
+    console.log('Parent')
+
+    useEffect(() => {
+        console.log('Parent did mount');
+        console.log(myRef)
+    }, [])
+
+    const handleClick = useCallback(() => {
+        setCount((prevCount) => prevCount + 1)
+    }, [setCount])
+
+    const handleShow = (event) => {
+        setShow(!show)
+
     }
 
-    const handleChange = (event) => {
-        setName(event.target.value)
-    }
-    //в режиме разработчика можно увидеть сформированное имя
-    // console.log('style', styles)
-    console.log('props', props)
 
     return (
         <>
             <h1 style={{ color: 'green' }}>{props.title}</h1>
-            <h2 className={styles.border}>Name: {name}</h2>
-            <input type="text" className={styles.name_input} placeholder="Введите Ваше Имя" onChange={handleChange} />
-            <p>COUNT: {count}</p>
-            <button onClick={handleClick}>Click</button>
+            <button onClick={handleShow}>Show</button>
+            <Button type='submit' className='btn' onClick={handleClick}>Click count</Button>
+            <p ref={myRef}>COUNT: {count}</p>
+            {show && <Child handleClick={handleClick} />}
+
         </>
     )
 }
