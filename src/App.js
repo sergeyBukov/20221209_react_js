@@ -1,33 +1,71 @@
+import { Routes, Route } from 'react-router-dom'
+import { nanoid } from 'nanoid'
+
+import { Header } from "./components/Header/Header"
+import { MainPage } from './pages/MainPage'
+import { ProfilePage } from './pages/ProfilePage'
+import { ChatsPage } from './pages/ChatsPage'
+import { ChatList } from './components/ChatList/ChatList'
 import { useState } from 'react'
-import { Form } from './components/classes/Form'
-import { Form as FormFunc } from './components/func/Form'
-import { Form as FormMessage } from './components/message/Form'
+
+
+const degaultMessges = {
+    default: [
+        {
+            author: 'user',
+            text: 'one text'
+        },
+        {
+            author: 'user',
+            text: 'two text'
+        },
+    ]
+}
 
 export function App() {
-    const [toggle, setToggle] = useState(true)
-    const [arr, setArr] = useState([{ name: 'Biba' }, { name: 'Boba' }, { name: 'Giga' }, { name: 'Goga' }])
+    const [messages, setMessages] = useState(degaultMessges)
+
+    const chats = Object.keys(messages).map((chat) => ({
+        id: nanoid(),
+        name: chat
+    }))
+
+    const onAddChat = (newChat) => {
+        console.log('newChat', newChat)
+        setMessages({
+            ...messages,
+            [newChat.name]: []
+        })
+    }
+
+    const onAddMessage = (chatId, newMassage) => {
+        setMessages({
+            ...messages,
+            [chatId]: [...messages[chatId], newMassage]
+        })
+    }
 
     return (
         <>
-            <button onClick={() => setToggle(!toggle)}>Toggle</button>
-            <hr />
-            <h2>{toggle ? 'Function Component' : 'Classes Component'}</h2>
-            {!toggle && <Form />}
-            {toggle && <FormFunc title='Function Component!!!!!!' />}
+            {/* <Header /> */}
+            <Routes>
+                <Route path='/' element={<Header />}>
+                    <Route index element={<MainPage />} />
+                    <Route path="profile" element={<ProfilePage />} />
+                    <Route path="chats">
+                        <Route index element={<ChatList chats={chats} onAddChat={onAddChat} />} />
+                        <Route
+                            path=":chatId"
+                            element={<ChatsPage chats={chats}
+                                messages={messages}
+                                onAddMessage={onAddMessage}
+                                onAddChat={onAddChat} />}
+                        />
+                    </Route>
+                </Route>
 
-
-            {/* <button onClick={() => setToggle(!toggle)}>{toggle ? 'hide' : 'show'}</button>
-            {toggle && <FormFunc title='Function Component' />}
-            <ul>
-                {arr.map((item) => (
-                    <li>{item.name}</li>
-                ))}
-            </ul> */}
-            <hr />
-            {toggle && <FormMessage title='Message Component' />}
-
+                <Route path="*" element={<h2>404 Page not FOUND</h2>} />
+            </Routes>
         </>
     )
 }
-
-// export default App
