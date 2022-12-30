@@ -43,6 +43,7 @@ export function Header() {
                         ))}
                     </ul>
                     <p>{name}</p>
+                    <input type="checkbox" />
                 </nav>
             </header>
             <main>
