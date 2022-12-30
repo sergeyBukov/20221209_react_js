@@ -1,6 +1,8 @@
 import { Outlet, Link, NavLink } from 'react-router-dom'
 import styles from "./Header.module.css"
 
+import { useSelector } from 'react-redux'
+
 export const navigate = [
     {
         id: 1,
@@ -21,6 +23,8 @@ export const navigate = [
 
 
 export function Header() {
+    const name = useSelector((store) => store.name)
+
     return (
         <>
             <header>
@@ -38,6 +42,8 @@ export function Header() {
                             </li>
                         ))}
                     </ul>
+                    <p>{name}</p>
+                    <input type="checkbox" />
                 </nav>
             </header>
             <main>
