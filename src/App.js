@@ -29,25 +29,25 @@ export function App() {
     const [messages, setMessages] = useState(degaultMessges)
     const [theme, setTheme] = useState(defaultContext.theme)
 
-    const chats = Object.keys(messages).map((chat) => ({
-        id: nanoid(),
-        name: chat
-    }))
+    // const chats = Object.keys(messages).map((chat) => ({
+    //   id: nanoid(),
+    //   name: chat
+    // }))
 
-    const onAddChat = (newChat) => {
-        console.log('newChat', newChat)
-        setMessages({
-            ...messages,
-            [newChat.name]: []
-        })
-    }
+    // const onAddChat = (newChat) => {
+    //   console.log('newChat', newChat)
+    //   setMessages({
+    //     ...messages,
+    //     [newChat.name]: []
+    //   })
+    // }
 
-    const onAddMessage = (chatId, newMassage) => {
-        setMessages({
-            ...messages,
-            [chatId]: [...messages[chatId], newMassage]
-        })
-    }
+    // const onAddMessage = (chatId, newMassage) => {
+    //   setMessages({
+    //     ...messages,
+    //     [chatId]: [...messages[chatId], newMassage]
+    //   })
+    // }
 
     const toggleTheme = () => {
         setTheme(theme === 'light' ? 'dark' : 'light')
@@ -66,16 +66,14 @@ export function App() {
                             <Route index element={<MainPage />} />
                             <Route path="profile" element={<ProfilePage />} />
                             <Route path="chats">
-                                <Route index element={<ChatList chats={chats} onAddChat={onAddChat} />} />
+                                <Route index element={<ChatList />} />
                                 <Route
                                     path=":chatId"
-                                    element={<ChatsPage chats={chats}
-                                        messages={messages}
-                                        onAddMessage={onAddMessage}
-                                        onAddChat={onAddChat} />}
+                                    element={<ChatsPage />}
                                 />
                             </Route>
                         </Route>
+
                         <Route path="*" element={<h2>404 Page not FOUND</h2>} />
                     </Routes>
                 </ThemeContext.Provider>
