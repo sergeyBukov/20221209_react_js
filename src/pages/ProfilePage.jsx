@@ -7,20 +7,18 @@ import { selectName, selectVisible } from '../store/profile/selectors'
 
 export function ProfilePage() {
     const { theme, toggleTheme } = useContext(ThemeContext)
-    /* const name = useSelector((store) => store.name) */
     const name = useSelector(selectName)
     const visible = useSelector(selectVisible)
-
     const [value, setValue] = useState('')
 
     const dispatch = useDispatch()
 
-    /*     console.log('theme ====>', theme)
-        console.log('store', name) */
+    // console.log('theme ====>', theme)
+    // console.log('store', name)
 
-    const handleChange = () => {
+    const hendleChange = () => {
         console.log(value)
-        /*         dispatch({ type: types.CHANGE_NAME, payload: value }) */
+        // dispatch({type: types.CHANGE_NAME, payload: value})
         dispatch(changeName(value))
         setValue('')
     }
@@ -32,17 +30,15 @@ export function ProfilePage() {
             <button onClick={toggleTheme}>Change theme</button>
             <hr />
             <h2>{name}</h2>
-
             <input type="checkbox" checked={visible} readOnly />
-            <button onClick={() => dispatch(toggleProfile())}>change visible</button>
+            <button onClick={() => dispatch(toggleProfile())} >change visible</button>
             <br />
-
             <input
-                type='text'
+                type="text"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
             />
-            {/*  <button onClick={handleChange}>Change name</button> */}
+            {/* <button onClick={hendleChange}>Change name</button> */}
             <button onClick={() => dispatch(changeName(value))}>Change name</button>
         </>
     )
