@@ -20,6 +20,11 @@ export const navigate = [
     name: 'Chat',
     to: '/chats'
   },
+  {
+    id: 4,
+    name: 'About',
+    to: '/about'
+  },
 ]
 
 export function Header() {
@@ -33,22 +38,22 @@ export function Header() {
           <ul>
             {navigate.map((link) => (
               <li key={link.id}>
-              <NavLink 
-                to={link.to}
-                style={({ isActive }) => ({
-                  color: isActive ? 'green' : 'blue'
-                })}
-              >
-                {link.name}
-              </NavLink>
-            </li>
+                <NavLink
+                  to={link.to}
+                  style={({ isActive }) => ({
+                    color: isActive ? 'green' : 'blue'
+                  })}
+                >
+                  {link.name}
+                </NavLink>
+              </li>
             ))}
           </ul>
-        <p>{name}</p>
+          <p>{name}</p>
         </nav>
       </header>
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
     </>
   )
