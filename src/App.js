@@ -16,6 +16,7 @@ import { ProfilePage } from './pages/ProfilePage'
 import { AboutWithConnect } from './pages/AboutPage'
 import { ChatsPage } from './pages/ChatsPage/ChatsPage'
 import { ChatList } from './components/ChatList/ChatList'
+import { Articles } from './pages/Articles'
 
 export function App() {
     const [theme, setTheme] = useState(defaultContext.theme)
@@ -44,6 +45,7 @@ export function App() {
                                         element={<ChatsPage />}
                                     />
                                 </Route>
+                                <Route path="articles" element={<Articles />} />
                             </Route>
 
                             <Route path="*" element={<h2>404 Page not FOUND</h2>} />
