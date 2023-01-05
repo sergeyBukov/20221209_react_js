@@ -30,6 +30,16 @@ export const navigate = [
     name: 'Articles',
     to: '/articles'
   },
+  {
+    id: 6,
+    name: 'SingIn',
+    to: '/singin'
+  },
+  {
+    id: 7,
+    name: 'SignUp',
+    to: '/signup'
+  },
 ]
 
 export function Header() {

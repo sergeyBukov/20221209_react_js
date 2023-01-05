@@ -1,6 +1,5 @@
 import * as types from '../profile/types'
 
-/* 1 вариант */
 // export const changeName = (data) => {
 //   return {
 //     type: types.CHANGE_NAME, 
@@ -8,7 +7,6 @@ import * as types from '../profile/types'
 //   }
 // }
 
-/* 2 вариант */
 export const changeName = (data) => ({
     type: types.CHANGE_NAME,
     payload: data
@@ -16,4 +14,9 @@ export const changeName = (data) => ({
 
 export const toggleProfile = () => ({
     type: types.TOGGLE_PROFILE
+})
+
+export const auth = (auth) => ({
+    type: types.IS_AUTH,
+    payload: auth
 })
