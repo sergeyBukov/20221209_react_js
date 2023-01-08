@@ -10,8 +10,8 @@ import { messagesRef } from '../../services/firebase'
 export function ChatList({ messageDB, chats }) {
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
-  const chats = useSelector(selectChat,
-    (prev, next) => prev.length === next.length)
+  // const chats = useSelector(selectChat,
+  //  (prev, next) => prev.length === next.length)
 
   console.log('update chats', chats)
 
@@ -31,7 +31,7 @@ export function ChatList({ messageDB, chats }) {
     // })
   }
 
-  // console.log('chats', chats)
+  console.log('chats', chats)
 
   return (
     <>
