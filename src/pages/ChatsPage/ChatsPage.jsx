@@ -12,32 +12,32 @@ import { selectMessage } from '../../store/messages/selectors'
 import styles from './ChatsPage.module.css'
 
 
-export function ChatsPage({ messagesDB, chats }) {
-    const { chatId } = useParams()
+export function ChatsPage ({messagesDB, chats}) {
+  const {chatId} = useParams()
 
-    const MessageListWithClass = WithClasses(MessageList)
+  const MessageListWithClass = WithClasses(MessageList)
 
-    console.log('messagesDB', messagesDB)
-    const messagesChat = chats.find((chat) => chat?.name === chatId)
-    const messages = Object.entries(messagesChat.messages).map((mes) => ({
-        id: mes[0],
-        text: mes[1].text,
-        author: mes[1].author,
-    }))
-    console.log('messages', messagesChat)
+  console.log('messagesDB', messagesDB)
+  const messagesChat = chats.find((chat) => chat?.name === chatId)
+  const messages = Object.entries(messagesChat.messages).map((mes) => ({
+    id: mes[0],
+    text: mes[1].text,
+    author: mes[1].author,
+  }))
+  console.log('messages', messagesChat)
 
-    return (
-        <>
-            <h1>Welcome to chat!</h1>
-            <ChatList chats={chats} />
-            {/* <MessageList messages={chatId ? messages[chatId] : []} /> */}
-            <MessageListWithClass
-                messages={chatId ? messages : []}
-                classes={styles.border}
-            />
-            <Form />
-        </>
-    )
+  return (
+    <>
+      <h1>Welcome to chat!</h1>
+      <ChatList chats={chats} />
+      {/* <MessageList messages={chatId ? messages[chatId] : []} /> */}
+      <MessageListWithClass 
+        messages={chatId ? messages : []}
+        classes={styles.border}
+      />
+      <Form />
+    </>
+  )
 }
 
 // export default App
