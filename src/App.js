@@ -1,6 +1,6 @@
 //библиотеки
 import { Routes, Route } from 'react-router-dom'
-/* import { Provider } from 'react-redux' */
+// import { Provider } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { PersistGate } from 'redux-persist/integration/react'
@@ -14,7 +14,7 @@ import { firebaseAuth, messagesRef } from './services/firebase'
 import { onValue } from "firebase/database";
 
 //компоненты и страницы
-import { Header } from "./components/Header/Header"
+import { Header } from './components/Header/Header'
 import { MainPage } from './pages/MainPage'
 import { ProfilePage } from './pages/ProfilePage'
 import { AboutWithConnect } from './pages/AboutPage'
@@ -31,7 +31,7 @@ export function App() {
 
     const [theme, setTheme] = useState(defaultContext.theme)
 
-    const [messageDB, setMessageDB] = useState({})
+    const [messagesDB, setMessagesDB] = useState({})
     const [chats, setChats] = useState([])
 
     const toggleTheme = () => {
@@ -56,19 +56,20 @@ export function App() {
 
             const newChats = Object.entries(data).map((item) => ({
                 name: item[0],
-                message: item[1].messageList
+                messages: item[1].messageList
             }))
-            console.log(newChats)
 
-            setMessageDB(data)
+            setMessagesDB(data)
             setChats(newChats)
+            console.log('newChats', newChats)
+            console.log('messagesDB', messagesDB)
         })
     }, [])
 
 
     return (
         <>
-            {/*      <Provider store={store}> */}
+            {/* <Provider store={store}> */}
             <PersistGate persistor={persistor}>
                 <ThemeContext.Provider value={{
                     theme,
@@ -79,26 +80,17 @@ export function App() {
                             <Route index element={<MainPage />} />
                             <Route path="profile" element={<ProfilePage />} />
                             <Route path="about" element={<AboutWithConnect />} />
-                            {/* <Route path="chats">
-                                    <Route index element={<ChatList />} />
-                                    <Route
-                                        path=":chatId"
-                                        element={<ChatsPage />}
-                                    />
-                                </Route> */}
                             <Route path="chats" element={<PrivateRoute />}>
                                 <Route
                                     index
-                                    element={<ChatList chats={chats} messageDB={messageDB} />}
+                                    element={<ChatList chats={chats} messagesDB={messagesDB} />}
                                 />
                                 <Route
                                     path=":chatId"
-                                    element={<ChatsPage chats={chats} messageDB={messageDB} />}
+                                    element={<ChatsPage chats={chats} messagesDB={messagesDB} />}
                                 />
                             </Route>
                             <Route path="articles" element={<Articles />} />
-                            {/*                                 <Route path="singin" element={<SingIn />} />
-                                <Route path="signup" element={<SignUp />} /> */}
                             <Route path="signin" element={<PublicRoute component={<SingIn />} />} />
                             <Route path="signup" element={<SignUp />} />
                         </Route>
@@ -107,7 +99,7 @@ export function App() {
                     </Routes>
                 </ThemeContext.Provider>
             </PersistGate>
-            {/*             </Provider> */}
+            {/* </Provider> */}
         </>
     )
 }
