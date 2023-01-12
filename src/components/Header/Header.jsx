@@ -34,16 +34,16 @@ export const navigates = [
     name: 'Articles',
     to: '/articles'
   },
-  /*   {
-      id: 6,
-      name: 'SingIn',
-      to: '/signin'
-    },
-    {
-      id: 7,
-      name: 'SignUp',
-      to: '/signup'
-    }, */
+  // {
+  //   id: 6,
+  //   name: 'SingIn',
+  //   to: '/signin'
+  // },
+  // {
+  //   id: 7,
+  //   name: 'SignUp',
+  //   to: '/signup'
+  // },
 ]
 
 export function Header() {
