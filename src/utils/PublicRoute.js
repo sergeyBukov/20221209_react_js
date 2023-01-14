@@ -4,11 +4,11 @@ import { selectAuth } from '../store/profile/selectors';
 
 
 export const PublicRoute = ({ component }) => {
-    const isAuth = useSelector(selectAuth);
+  const isAuth = useSelector(selectAuth);
 
-    if (isAuth) {
-        // return <Navigate to="/" replace />;
-    }
+  if (isAuth) {
+    // return <Navigate to="/" replace />;
+  }
 
-    return component ? component : <Outlet />;
+  return component ? component : <Outlet />;
 };

@@ -7,7 +7,7 @@ import { selectChat } from '../../store/messages/selectors'
 import { push, set, remove } from "firebase/database";
 import { messagesRef, getChatById, getMessageListById } from '../../services/firebase'
 
-export function ChatList({ messagesDB, chats }) {
+export function ChatList({messagesDB, chats}) {
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
 
@@ -52,8 +52,8 @@ export function ChatList({ messagesDB, chats }) {
 
       <h1>ChatList</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
+        <input 
+          type="text" 
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

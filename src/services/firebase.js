@@ -3,12 +3,12 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import { getDatabase, ref } from "firebase/database";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC2NEF-DbDkHPP5vYbiAqOEF5L00rNSjHY",
-    authDomain: "gb-285061-f5147.firebaseapp.com",
-    projectId: "gb-285061-f5147",
-    storageBucket: "gb-285061-f5147.appspot.com",
-    messagingSenderId: "785970013810",
-    appId: "1:785970013810:web:4949cb257c7aadb4b344eb"
+  apiKey: "AIzaSyAllRYd35oQgFnGZZCyAk4NOyKsbSEozZY",
+  authDomain: "gb-285061.firebaseapp.com",
+  projectId: "gb-285061",
+  storageBucket: "gb-285061.appspot.com",
+  messagingSenderId: "506223164895",
+  appId: "1:506223164895:web:eb11826187d5f8b4b1186a"
 };
 
 // Initialize Firebase
@@ -16,14 +16,12 @@ const app = initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(app)
 
-// передаем данные из inputs
 export const signUp = async (email, password) => await createUserWithEmailAndPassword(firebaseAuth, email, password)
 
 export const signIn = async (email, password) => await signInWithEmailAndPassword(firebaseAuth, email, password)
 
 export const logOut = async () => await signOut(firebaseAuth)
 
-//для базы данных(сообщения)
 const db = getDatabase(app)
 
 export const userRef = ref(db, 'user')
