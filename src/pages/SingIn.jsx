@@ -5,11 +5,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
 import { signIn } from '../services/firebase';
-
 import { auth } from '../store/profile/actions'
 
+
 export function SingIn() {
-    const [inputs, setInputs] = useState({ login: '', password: '' })
+    const [inputs, setInputs] = useState({ email: '', password: '' })
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -18,14 +18,6 @@ export function SingIn() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        /*         if (inputs.login === 'gb' && inputs.password === 'gb') {
-                    dispatch(auth(true))
-                    navigate('/')
-                } else {
-                    setError('Login and password faild')
-                    setInputs({ login: '', password: '' })
-                }
-            } */
         setError('')
         setLoading(true)
         try {
@@ -41,25 +33,26 @@ export function SingIn() {
         }
     }
 
-
     return (
         <>
             <div>SingIn</div>
             <form onSubmit={handleSubmit}>
-                <p>Email:</p>
-                <input
-                    type="text"
-                    name="email"
-                    value={inputs.email}
-                    onChange={(e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))}
-                />
-                <p>Password:</p>
-                <input
-                    type="text"
-                    name="password"
-                    value={inputs.password}
-                    onChange={(e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))}
-                />
+                <label>Email:
+                    <input
+                        type="text"
+                        name="email"
+                        value={inputs.email}
+                        onChange={(e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))}
+                    />
+                </label>
+                <label>Password:
+                    <input
+                        type="text"
+                        name="password"
+                        value={inputs.password}
+                        onChange={(e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }))}
+                    />
+                </label>
                 <button>login</button>
             </form>
             {loading && (
@@ -69,6 +62,5 @@ export function SingIn() {
             )}
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </>
-
     )
 }

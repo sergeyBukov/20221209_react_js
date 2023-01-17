@@ -16,6 +16,7 @@ const app = initializeApp(firebaseConfig);
 
 export const firebaseAuth = getAuth(app)
 
+// передаем данные из inputs
 export const signUp = async (email, password) => await createUserWithEmailAndPassword(firebaseAuth, email, password)
 
 export const signIn = async (email, password) => await signInWithEmailAndPassword(firebaseAuth, email, password)

@@ -12,53 +12,27 @@ import { selectMessage } from '../../store/messages/selectors'
 import styles from './ChatsPage.module.css'
 
 
-export function ChatsPage({ messageDB, chats }) {
-    // const [messages, setMessages] = useState([])
+export function ChatsPage({ messagesDB, chats }) {
     const { chatId } = useParams()
-    const messages = useSelector(selectMessage)
 
     const MessageListWithClass = WithClasses(MessageList)
 
-    // const addMessage = (newMessage) => {
-    //   console.log('newMessage', newMessage);
-    //   setMessages([...messages, newMessage])
-    // }
-
-    // useEffect(() => {
-    //   if (chatId && 
-    //       messages[chatId]?.length > 0 && 
-    //       messages[chatId][messages[chatId].length - 1].author === AUTHOR.user
-    //     ) {
-    //     const timeout = setTimeout(() => {
-    //       onAddMessage(chatId, {
-    //         author: AUTHOR.bot,
-    //         text: 'Im BOT'
-    //       })
-    //     }, 1500)
-
-    //     return () => {
-    //       clearTimeout(timeout)
-    //     }
-    //   }
-    // }, [chatId, messages])
-
-    // const handleAddMessage = (massage) => {
-    //   if (chatId) {
-    //     onAddMessage(chatId, massage)
-    //   }
-    // }
-
-    if (chatId && !messages[chatId]) {
-        return <Navigate to="/chats" replace />
-    }
+    console.log('messagesDB', messagesDB)
+    const messagesChat = chats.find((chat) => chat?.name === chatId)
+    const messages = Object.entries(messagesChat.messages).map((mes) => ({
+        id: mes[0],
+        text: mes[1].text,
+        author: mes[1].author,
+    }))
+    console.log('messages', messagesChat)
 
     return (
         <>
             <h1>Welcome to chat!</h1>
-            <ChatList />
+            <ChatList chats={chats} />
             {/* <MessageList messages={chatId ? messages[chatId] : []} /> */}
             <MessageListWithClass
-                messages={chatId ? messages[chatId] : []}
+                messages={chatId ? messages : []}
                 classes={styles.border}
             />
             <Form />
